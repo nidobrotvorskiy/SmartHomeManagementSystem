@@ -8,12 +8,19 @@ sys.path.append(project_dir)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 import django
 django.setup()
-from smarthouse.models import SmartHouse
-SmartHouse.objects.all().delete()
-house = SmartHouse()
+from smarthouse.models import SmartHouseHUB, SensorHUB
+SmartHouseHUB.objects.all().delete()
+SensorHUB.objects.all().delete()
+house = SmartHouseHUB()
 house.HouseName = 'Дача'
 house.Adress = 'Московская область, СНТ Дельфин'
 house.Country = 'Russia'
 house.TimeCreated = timezone.now()
 house.save()
-print(SmartHouse.objects.all())
+
+sensor = SensorHUB()
+sensor.SensorName = 'A001WeatherHome'
+sensor.TimeCreated = timezone.now()
+sensor.CheckData = timezone.now()
+sensor.IsActive = 1
+sensor.save()
