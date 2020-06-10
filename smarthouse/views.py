@@ -25,12 +25,19 @@ def index(request):
     lockcontrol = LockControlSensorLink.objects.all()
     weathersensor = WeatherSensorLink.objects.all()
     weatheroutdoors = forecast(city_id('Moscow'))
-
-
     return render(request, 'userPage/base.html', {'sensor_hub': sensorhub,
                                                'smart_house': smarthouse, 'lock_control': lockcontrol,
                                                'weather_sensor': weathersensor, 'weather_outdoors': weatheroutdoors})
 
 
-def housesensors(houseID, request):
-    return HttpResponse('Hello')
+def housesensors(request, id_house):
+    id = id_house
+    house = SmartHouseHUB.objects.get(HouseID = id)
+    houseweaterSensorsdata = house.weathersensorlink_set.order_by('-timeRecieved')[0]
+    houseoutdoors = house.weatheroutdoors_set.order_by('-timeRecieved')[0]
+    lockerSensors = house.lockcontrolsensorlink_set.order_by('-timeRecieved')[0]
+    print(houseweaterSensorsdata)
+    return render(request, 'userPage/smart.html', {'house': house,
+                                                        'houseweaterSensorsdata': houseweaterSensorsdata,
+                                                        'houseoutdoors': houseoutdoors,
+                                                        'lockerSensors': lockerSensors})

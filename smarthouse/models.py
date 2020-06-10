@@ -35,6 +35,7 @@ class LockControlSensorLink(models.Model):
     IsLocked = models.IntegerField('is_locked')
     timeRecieved = models.DateTimeField('time_measured')
 
+
 class WeatherOutDoors(models.Model):
     HouseID = models.ForeignKey(SmartHouseHUB, on_delete=models.CASCADE)
     temperatureData = models.FloatField('temperature', max_length=200)

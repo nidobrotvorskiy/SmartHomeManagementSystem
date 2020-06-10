@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartHouse</title>
+    <h2>{{ house }}, {{ house.Adress }}, {{ house.Country }}</h2>
+</head>
+<body>
+<p> Данные по датчикам Погоды:</p>
+        <p> Температура в доме {{ houseweaterSensorsdata.temperatureData }}</p>
+        <p> Влажность в доме {{ houseweaterSensorsdata.humidityData }}</p>
+        <p> Время получения данных: {{ houseweaterSensorsdata.timeRecieved }}</p>
+<p> Данные о погоде на улице:</p>
+        <p> Температура на улице :   {{ houseoutdoors.temperatureData }}  </p>
+        <p> Влажность на улице :   {{ houseoutdoors.humidityData }}  </p>
+        <p> Давление на улице:   {{ houseoutdoors.pressureData }}  </p>
+        <p> Дата обновления:   {{ houseoutdoors.timeRecieved }}</p>
+<p> Данные по датчикам Контроля:</p>
+        <p> Название сенсора  {{ lockerSensors.SensorId }}</p>
+        {% if lockerSensors.IsLocked == 1 %}
+            <option> Надёжно закрыто </option>
+            {% elif  lockerSensors.IsLocked == 1%}
+            <option> Открыто </option>
+        {% endif %}
+        <p>  Время получения сигнала  {{ lockerSensors.timeRecieved }}</p>
+
+</body>
+</html>
