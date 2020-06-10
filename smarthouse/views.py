@@ -26,6 +26,11 @@ def index(request):
     weathersensor = WeatherSensorLink.objects.all()
     weatheroutdoors = forecast(city_id('Moscow'))
 
+
     return render(request, 'userPage/base.html', {'sensor_hub': sensorhub,
                                                'smart_house': smarthouse, 'lock_control': lockcontrol,
                                                'weather_sensor': weathersensor, 'weather_outdoors': weatheroutdoors})
+
+
+def housesensors(houseID, request):
+    return HttpResponse('Hello')
