@@ -8,7 +8,7 @@ from django.db.models import Q
 import json
 from django.apps import apps
 from django import template
-from .models import SmartHouse
+from .models import SmartHouseHUB
 
 register = template.Library()
 
@@ -18,5 +18,5 @@ def get_obj_attr(obj, attr):
 
 
 def index(request):
-    jsondata = json.dumps(list(SmartHouse.objects.all()), cls=DjangoJSONEncoder)
+    jsondata = json.dumps(list(SmartHouseHUB.objects.all()), cls=DjangoJSONEncoder)
     return JsonResponse({"valid": True, "data": jsondata}, content_type="application/json")

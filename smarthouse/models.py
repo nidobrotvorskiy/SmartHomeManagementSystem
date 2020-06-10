@@ -23,7 +23,21 @@ class SensorHUB(models.Model):
         return  self.SensorName
 
 class WeatherSensorLink(models.Model):
-    SensorId = models.ForeignKey(SensorHUB, on_delete=models.SET_NULL(), primary_key=True)
-    HouseID = models.ForeignKey(SmartHouseHUB, on_delete=models.SET_NULL(), primary_key=True)
-    temperatureData = models.CharField('temperature', max_length=200)
+    SensorId = models.ForeignKey(SensorHUB, on_delete=models.CASCADE)
+    HouseID = models.ForeignKey(SmartHouseHUB, on_delete=models.CASCADE)
+    temperatureData = models.FloatField('temperature', max_length=200)
+    humidityData = models.FloatField('humidity')
     timeRecieved = models.DateTimeField('time_measured')
+
+class LockControlSensorLink(models.Model):
+    SensorId = models.ForeignKey(SensorHUB, on_delete=models.CASCADE)
+    HouseID = models.ForeignKey(SmartHouseHUB, on_delete=models.CASCADE)
+    IsLocked = models.IntegerField('is_locked')
+    timeRecieved = models.DateTimeField('time_measured')
+
+class WeatherOutDoors(models.Model):
+    HouseID = models.ForeignKey(SmartHouseHUB, on_delete=models.CASCADE)
+    temperatureData = models.FloatField('temperature', max_length=200)
+    humidityData = models.FloatField('humidity')
+    timeRecieved = models.DateTimeField('time_measured')
+    pressureData = models.FloatField('pressure')
