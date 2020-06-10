@@ -47,8 +47,6 @@ weatherSensor.humidityData = 70.5
 weatherSensor.temperatureData = 29
 weatherSensor.timeRecieved = timezone.now()
 
-print({"valid": True, "data1": json.dumps(list(SmartHouseHUB.objects.all().values()), cls=DjangoJSONEncoder)})
-
 
 
 s_city = city_id('Moscow')
